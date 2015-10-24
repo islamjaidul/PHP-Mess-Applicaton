@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,25 +12,25 @@
     <title>Dashboard</title>
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="<?php echo site_url('style/bootstrap.min.css');?>">
+    <link rel="stylesheet" href="<?php echo site_url('style/bootstrap.min.css'); ?>">
 
     <!-- MetisMenu CSS -->
-    <link rel="stylesheet" href="<?php echo site_url('style/plugins/metisMenu/metisMenu.min.css');?>">
+    <link rel="stylesheet" href="<?php echo site_url('style/plugins/metisMenu/metisMenu.min.css'); ?>">
 
     <!-- Timeline CSS -->
-    <link rel="stylesheet" href="<?php echo site_url('style/plugins/timeline.css');?>">
+    <link rel="stylesheet" href="<?php echo site_url('style/plugins/timeline.css'); ?>">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="<?php echo site_url('style/sb-admin-2.css');?>">
+    <link rel="stylesheet" href="<?php echo site_url('style/sb-admin-2.css'); ?>">
 
     <!-- Morris Charts CSS -->
-    <link rel="stylesheet" href="<?php echo site_url('style/plugins/morris.css');?>">
+    <link rel="stylesheet" href="<?php echo site_url('style/plugins/morris.css'); ?>">
 
-    <link rel="stylesheet" href="<?php echo site_url('css/custom-bootstrap.css');?>">
+    <link rel="stylesheet" href="<?php echo site_url('css/custom-bootstrap.css'); ?>">
 
 
     <!-- Custom Fonts -->
-    <link rel="stylesheet" href="<?php echo site_url('font-awesome-4.3.0/css/font-awesome.min.css');?>">
+    <link rel="stylesheet" href="<?php echo site_url('font-awesome-4.3.0/css/font-awesome.min.css'); ?>">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,12 +40,11 @@
     <![endif]-->
 
 
-
 </head>
 
 <body>
 
-<div  id="wrapper">
+<div id="wrapper">
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -63,10 +62,9 @@
         <ul class="nav navbar-top-links navbar-right">
 
 
-
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
                     <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
@@ -74,7 +72,7 @@
                     <li><a href=""><i class="fa fa-gear fa-fw"></i> Settings</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="<?php echo base_url('logout');?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <li><a href="<?php echo base_url('logout'); ?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->
@@ -83,6 +81,6 @@
         </ul>
         <!-- /.navbar-top-links -->
 
-        <?php include_once 'navigation.php';?>
-        <?php include_once 'main.php';?>
-<?php include_once 'footer.php';?>
+        <?php include_once 'navigation.php'; ?>
+        <?php include_once 'main.php'; ?>
+<?php include_once 'footer.php'; ?>

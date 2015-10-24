@@ -14,14 +14,10 @@
             </li>
 
 
-
-
-
-
-            <li><a href="<?php echo base_url('dashboard/test')?>"><i class="fa fa-tachometer"></i> Dashboard</a></li>
-            <li><a href=""><i class="fa fa-home"></i> Country</a></li>
+            <li><a href="<?php echo base_url('dashboard/test') ?>"><i class="fa fa-tachometer"></i> Dashboard</a></li>
+            <li><a href="<?php echo base_url('dashboard/member') ?>"><i class="fa fa-home"></i> Member</a></li>
             <li>
-                <a href=""><i class="fa fa-sitemap"></i> Institution Category</a>
+                <a href="<?php echo base_url('dashboard/accounts') ?>"><i class="fa fa-sitemap"></i> Mess Accounts</a>
 
             </li>
 
@@ -31,14 +27,11 @@
             </li>
 
 
-
-
             <li><a href=""><i class="fa fa-user"></i> Student Information</a></li>
 
             <li><a href=""><i class="fa fa-file-text-o"></i> Cover Letter</a></li>
 
             <li><a href=""><i class="fa fa-pie-chart"></i></i> Report</a></li>
-
 
 
         </ul>

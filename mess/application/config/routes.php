@@ -59,7 +59,12 @@ $route['dashboard']['get'] = 'Account/getDashboard';
 //Dashboard Route Start
 
 $route['dashboard/test']['get'] = 'Dashboard/test';
-
+$route['dashboard/member']['get'] = 'Dashboard/getMember';
+$route['dashboard/member/new']['get'] = 'Dashboard/getNewMember';
+$route['dashboard/member/new']['post'] = 'Dashboard/postNewMember';
+$route['dashboard/accounts']['get'] = 'MessAccounts/getMessAccounts';
+$route['dashboard/accounts/new']['get'] = 'MessAccounts/getNewMessAccounts';
+$route['dashboard/accounts/new']['post'] = 'MessAccounts/postNewMessAccounts';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

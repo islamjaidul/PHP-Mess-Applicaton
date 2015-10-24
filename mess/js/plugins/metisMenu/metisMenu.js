@@ -6,13 +6,14 @@
  * Made by Osman Nuri Okumuş
  * Under MIT License
  */
-;(function ($, window, document, undefined) {
+;
+(function ($, window, document, undefined) {
 
     var pluginName = "metisMenu",
         defaults = {
             toggle: true
         };
-        
+
     function Plugin(element, options) {
         this.element = element;
         this.settings = $.extend({}, defaults, options);
@@ -46,7 +47,7 @@
             });
         },
 
-        isIE: function() {//https://gist.github.com/padolsey/527683
+        isIE: function () {//https://gist.github.com/padolsey/527683
             var undef,
                 v = 3,
                 div = document.createElement("div"),
@@ -54,14 +55,14 @@
 
             while (
                 div.innerHTML = "<!--[if gt IE " + (++v) + "]><i></i><![endif]-->",
-                all[0]
-            ) {
+                    all[0]
+                ) {
                 return v > 4 ? v : undef;
             }
         }
     };
 
-    $.fn[ pluginName ] = function (options) {
+    $.fn[pluginName] = function (options) {
         return this.each(function () {
             if (!$.data(this, "plugin_" + pluginName)) {
                 $.data(this, "plugin_" + pluginName, new Plugin(this, options));
