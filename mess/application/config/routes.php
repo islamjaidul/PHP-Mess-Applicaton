@@ -65,6 +65,11 @@ $route['dashboard/member/new']['post'] = 'Dashboard/postNewMember';
 $route['dashboard/accounts']['get'] = 'MessAccounts/getMessAccounts';
 $route['dashboard/accounts/new']['get'] = 'MessAccounts/getNewMessAccounts';
 $route['dashboard/accounts/new']['post'] = 'MessAccounts/postNewMessAccounts';
-
+$route['dashboard/expenditure']['get'] = 'Expenditure/getExpenditure';
+$route['dashboard/expenditure/new']['get'] = 'Expenditure/getNewExpenditure';
+$route['dashboard/expenditure/new']['post'] = 'Expenditure/postNewExpenditure';
+$route['dashboard/meal']['get'] = 'Meal/getMeal';
+$route['dashboard/meal/new']['get'] = 'Meal/getNewMeal';
+$route['dashboard/meal/new']['post'] = 'Meal/postNewMeal';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

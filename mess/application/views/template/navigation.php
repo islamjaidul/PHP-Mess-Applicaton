@@ -22,12 +22,12 @@
             </li>
 
             <li>
-                <a href=""><i class="fa fa-university"></i> Institution</a>
+                <a href="<?php echo base_url('dashboard/expenditure')?>"><i class="fa fa-university"></i> Expenditure</a>
 
             </li>
 
 
-            <li><a href=""><i class="fa fa-user"></i> Student Information</a></li>
+            <li><a href="<?php echo base_url('dashboard/meal')?>"><i class="fa fa-user"></i> Meal</a></li>
 
             <li><a href=""><i class="fa fa-file-text-o"></i> Cover Letter</a></li>
 

@@ -7,7 +7,11 @@ class MemberModel extends CI_Model
         $this->load->database();
         $this->load->library('session');
     }
-
+    private function date() {
+        date_default_timezone_set('Asia/Dhaka');
+        $date = date('Y-m-d h:i:s');
+        return $date;
+    }
     public function createMember()
     {
         $data = array(
@@ -17,7 +21,7 @@ class MemberModel extends CI_Model
             'email' => $this->input->post('email'),
             'occupation' => $this->input->post('occupation'),
             'usersid' => $this->session->userdata('id'),
-            'created_at' => date("Y-m-d h:m:s")
+            'created_at' => $this->date()
         );
         $sql = $this->db->insert('mess_member', $data);
         return $sql;

@@ -16,6 +16,12 @@ class AccountModel extends CI_Model
         return password_hash($x, PASSWORD_BCRYPT, $options);
     }
 
+    private function date() {
+        date_default_timezone_set('Asia/Dhaka');
+        $date = date('Y-m-d h:i:s');
+        return $date;
+    }
+
     public function accountCreate()
     {               //Account Create
         $password = $this->input->post('password');
@@ -26,7 +32,7 @@ class AccountModel extends CI_Model
             'mobile' => $this->input->post('mobile'),
             'rule' => 'U',
             'active' => 0,
-            'created_at' => date("Y-m-d h:i:s")
+            'created_at' => $this->date()
         );
 
         $sql = $this->db->insert('users', $data);

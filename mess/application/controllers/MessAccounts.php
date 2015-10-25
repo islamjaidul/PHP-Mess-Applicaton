@@ -1,6 +1,6 @@
 <?php
 
-class MessAccounts extends CI_Controller
+class MessAccounts extends MY_Controller
 {
     public function __construct()
     {
@@ -14,6 +14,7 @@ class MessAccounts extends CI_Controller
     {
         $data['page'] = 'messaccount';
         $data['heading'] = 'Mess Accounts';
+        $data['rows'] = $this->MessAccountsModel->collectMessAccounts();
         $this->load->view('dashboard', $data);
     }
 
@@ -33,7 +34,11 @@ class MessAccounts extends CI_Controller
             $data['page'] = 'newmessaccount';
             $this->load->view('dashboard', $data);
         } else {
-
+            $this->MessAccountsModel->createAccounts();
+            $this->session->set_flashdata('msg', 'New Cash Saved Successfully');
+            redirect('dashboard/accounts/new');
         }
     }
+
+
 }
