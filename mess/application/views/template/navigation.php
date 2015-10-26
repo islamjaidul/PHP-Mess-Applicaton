@@ -29,7 +29,7 @@
 
             <li><a href="<?php echo base_url('dashboard/meal')?>"><i class="fa fa-user"></i> Meal</a></li>
 
-            <li><a href=""><i class="fa fa-file-text-o"></i> Cover Letter</a></li>
+            <li><a href="<?php echo base_url('dashboard/userpanel')?>"><i class="fa fa-file-text-o"></i> User Panel</a></li>
 
             <li><a href=""><i class="fa fa-pie-chart"></i></i> Report</a></li>
 

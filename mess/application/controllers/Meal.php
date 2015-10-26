@@ -9,9 +9,12 @@ class Meal extends MY_Controller {
     }
 
     public function getMeal() {
-        $data['page'] = 'meal';
-        $data['heading'] = 'Meal List';
-        $this->load->view('dashboard', $data);
+        $data = $this->MealModel->createMeal();
+        if($data) {
+            echo 'Saved';
+        } else {
+           echo 'No';
+        }
     }
 
     public function getNewMeal() {
