@@ -20,14 +20,14 @@ class UserPanelModel extends CI_Model{
     }
 
     public function collectUserPanel() {
-        $sql = $this->db->get('mess_panel');
+        $sql = $this->db->get_where('mess_panel', array('usersid' => $_SESSION['id']));
         return $sql->result();
     }
 
     public function createUserPanel() {
         $password = $this->input->post('password');
         $data = array(
-            'mess_name' => $this->input->post('mess_name'),
+            'username' => $this->input->post('username'),
             'password' => $this->Password($password),
             'usersid' => $_SESSION['id'],
             'created_at' => $this->date()

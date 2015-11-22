@@ -15,6 +15,8 @@
 
     <link rel="stylesheet" href="<?php echo base_url("css/styles.css"); ?>">
 
+    <script src="<?php echo base_url('js/jquery.js');?>"></script>
+
 
 </head>
 
@@ -34,12 +36,18 @@ if (isset($login_error)) {
     }
     ?>
 </div>
-
 <div id="container">
     <!--<p style="color:#333399; margin:10px 0 -12px 15px; font-size:18px;">Login to JS-Global</p>-->
     <?php echo form_open("login") ?>
-
-    <label for="name">Username:</label>
+    <label for="name">Role:</label>
+    
+    <select style="background-color:#FFFFFF; height:42px; width:303px;" type="role" id="role" name="role">
+        <option value="0" selected="Select">Select</option>
+        <option value="M">Manager</option>
+        <option value="U">User</option>
+        <option value="A">Admin</option>
+    </select>
+    <label id="label_username"  for="name">Username:</label>
 
     <input type="name" name="username" id="username">
 
@@ -53,7 +61,7 @@ if (isset($login_error)) {
 
         <input type="checkbox" name="remember" id="remember"><label class="check" for="checkbox">Remember me</label>
 
-        <input type="submit" value="Login" name="submit"> <br/>
+        <input id="btn_login" type="submit" value="Login" name="submit"> <br/>
 
     </div>
 
@@ -65,7 +73,18 @@ if (isset($login_error)) {
 
 
 <!-- End Page Content -->
+<script>
+    $(document).ready(function() {
+       $('#role').change(function() {
+           if($('#role').val() == 'U') {
+               $('#label_username').html('Mess Name: ');
+           } else {
+               $('#label_username').html('User Name: ');
+           }
+       })
 
+    })
+</script>
 </body>
 
 </html>

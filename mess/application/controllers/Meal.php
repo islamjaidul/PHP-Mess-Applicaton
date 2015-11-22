@@ -5,26 +5,14 @@ class Meal extends MY_Controller {
         $this->load->library('form_validation');
         $this->load->library('session');
         $this->load->model('MealModel');
+        $this->MealModel->createMeal();
         //$this->load->library('calendar');
     }
 
     public function getMeal() {
-        $data = $this->MealModel->createMeal();
-        if($data) {
-            echo 'Saved';
-        } else {
-           echo 'No';
-        }
-    }
-
-    public function getNewMeal() {
-        $data['page'] = 'newmeal';
-        $data['heading'] = 'Add Meal';
-        $data['rows'] = $this->MealModel->collectMember();
+        $data['page'] = 'meal';
+        $data['heading'] = 'Meal panel';
         $this->load->view('dashboard', $data);
     }
 
-    public function postNewMeal() {
-
-    }
 }

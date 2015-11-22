@@ -49,6 +49,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
+
+//Account Route Start
 $route['default_controller'] = 'Account';
 $route['create']['get'] = 'Account/getCreate';
 $route['create']['post'] = 'Account/postCreate';
@@ -56,12 +58,12 @@ $route['login']['post'] = 'Account/getLogin';
 $route['logout']['get'] = 'Account/getLogout';
 $route['dashboard']['get'] = 'Account/getDashboard';
 
-//Dashboard Route Start
+//Dashboard Manager Route Start
 
-$route['dashboard/test']['get'] = 'Dashboard/test';
-$route['dashboard/member']['get'] = 'Dashboard/getMember';
-$route['dashboard/member/new']['get'] = 'Dashboard/getNewMember';
-$route['dashboard/member/new']['post'] = 'Dashboard/postNewMember';
+$route['dashboard/test']['get'] = 'Dashboard';
+$route['dashboard/member']['get'] = 'Member/getMember';
+$route['dashboard/member/new']['get'] = 'Member/getNewMember';
+$route['dashboard/member/new']['post'] = 'Member/postNewMember';
 $route['dashboard/accounts']['get'] = 'MessAccounts/getMessAccounts';
 $route['dashboard/accounts/new']['get'] = 'MessAccounts/getNewMessAccounts';
 $route['dashboard/accounts/new']['post'] = 'MessAccounts/postNewMessAccounts';
@@ -69,10 +71,12 @@ $route['dashboard/expenditure']['get'] = 'Expenditure/getExpenditure';
 $route['dashboard/expenditure/new']['get'] = 'Expenditure/getNewExpenditure';
 $route['dashboard/expenditure/new']['post'] = 'Expenditure/postNewExpenditure';
 $route['dashboard/meal']['get'] = 'Meal/getMeal';
-$route['dashboard/meal/new']['get'] = 'Meal/getNewMeal';
-$route['dashboard/meal/new']['post'] = 'Meal/postNewMeal';
 $route['dashboard/userpanel']['get'] = 'UserPanel/getUserPanel';
-$route['dashboard/userpanel/new']['get'] = 'UserPanel/getNewUserPanel';
 $route['dashboard/userpanel/new']['post'] = 'UserPanel/postNewUserPanel';
+
+//Dashboard User Route Start
+
+$route['dashboard/panel']['get'] = 'Panel/getPanel';
+$route['dashboard/panel']['post'] = 'Panel/postPanel';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

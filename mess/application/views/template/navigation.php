@@ -14,25 +14,38 @@
             </li>
 
 
-            <li><a href="<?php echo base_url('dashboard/test') ?>"><i class="fa fa-tachometer"></i> Dashboard</a></li>
-            <li><a href="<?php echo base_url('dashboard/member') ?>"><i class="fa fa-home"></i> Member</a></li>
-            <li>
-                <a href="<?php echo base_url('dashboard/accounts') ?>"><i class="fa fa-sitemap"></i> Mess Accounts</a>
+            <?php
+                if($_SESSION['role'] == 'M') {
+            ?>
+                <li><a href="<?php echo base_url('dashboard') ?>"><i class="fa fa-tachometer"></i> Dashboard</a></li>
+                <li><a href="<?php echo base_url('dashboard/member') ?>"><i class="fa fa-home"></i> Member</a></li>
+                <li>
+                    <a href="<?php echo base_url('dashboard/accounts') ?>"><i class="fa fa-sitemap"></i> Mess Accounts</a>
 
-            </li>
+                </li>
 
-            <li>
-                <a href="<?php echo base_url('dashboard/expenditure')?>"><i class="fa fa-university"></i> Expenditure</a>
+                <li>
+                    <a href="<?php echo base_url('dashboard/expenditure')?>"><i class="fa fa-university"></i> Expenditure</a>
 
-            </li>
+                </li>
 
 
-            <li><a href="<?php echo base_url('dashboard/meal')?>"><i class="fa fa-user"></i> Meal</a></li>
+                <li id="meal"><a href="<?php echo base_url('dashboard/meal')?>"><i class="fa fa-user"></i> Meal</a></li>
 
-            <li><a href="<?php echo base_url('dashboard/userpanel')?>"><i class="fa fa-file-text-o"></i> User Panel</a></li>
+                <li><a href="<?php echo base_url('dashboard/userpanel')?>"><i class="fa fa-file-text-o"></i> User Panel</a></li>
 
-            <li><a href=""><i class="fa fa-pie-chart"></i></i> Report</a></li>
+                <li><a href=""><i class="fa fa-pie-chart"></i></i> Report</a></li>
+            <?php
+                } elseif($_SESSION['role'] == 'U') {
+                    ?>
+                    <li><a href=""><i class="fa fa-tachometer"></i> Dashboard</a></li>
+                    <li><a href="<?php echo base_url('dashboard/panel')?>"><i class="fa fa-home"></i> Panel</a></li>
+                    <?php
+                } else {
+            ?>
+                    <li><a href="<?php echo base_url('dashboard/test') ?>"><i class="fa fa-tachometer"></i>
 
+            <?php }?>
 
         </ul>
     </div>
@@ -40,3 +53,4 @@
 </div>
 <!-- /.navbar-static-side -->
 </nav>
+

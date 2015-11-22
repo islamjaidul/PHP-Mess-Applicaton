@@ -17,17 +17,17 @@
         <?php } ?>
         <span id="error"> </span>
 
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
             <div class="panel-heading">
                 Create User Panel
             </div>
 
             <div class="panel-body">
-                <form>
+                <?php echo form_open('dashboard/userpanel/new')?>
                 <input type="text" name="mess_name" id="mess_name" class="form-control" placeholder="Enter the Mess Name" value="<?php echo set_value('mess_name')?>">
                 <input type="password" name="password" id="password" class="form-control" placeholder="Enter the Password">
                 <input style="width:300px" type="submit" class="btn btn-info" name="submit" value="Submit">
-                 </form>
+                </form>
             </div>
         </div>
     </div>
@@ -36,34 +36,32 @@
         <div class="panel panel-primary">
             <div class="panel-heading">User Panel Information</div>
             <div class="panel-body">
-                <table class="table table-striped">
-                    <tr><th>Mess Name</th><th>Password</th>/tr>
                     <?php
-                        if(isset($rows)) {
-                        foreach($rows as $row) {
-                    ?>
-                    <tr>
-                        <td>
-                            <?php echo $row-> mess_name;?>
-                        </td>
-                        <td></td>
-                    </tr>
+                        $id = 0;
+                        foreach ($rows as $row) {
+                            $id = $row->usersid;
+                            break;
+                        }
+                        if ($_SESSION['id'] == $id) {
+                         ?>
+                         <table class="table table-striped">
+                                    <tr><th>Mess Name</th><th>Date</th></tr>
+                         <?php
+                            foreach ($rows as $row) {
+                        ?>
+                                    <tr>
+                                        <td><?php echo $row->username; ?></td>
+                                        <td><?php echo $row->created_at; ?></td>
+                                    </tr>
+                            <?php } ?>
+                        </table>
+                    <?php } else {
+                        echo '<div class="alert alert-danger">You can add your user panel</div>';
+                    }
 
-                    <?php }}?>
-                </table>
+                    ?>
             </div>
         </div>
     </div>
 </div>
 
-<script>
-   $(document).ready(function() {
-        $(".btn-info").click(function() {
-           var mess_name = $('#mess_name').val();
-            var password = $('#password').val();
-            $.post("<?php echo base_url('dashboard/userpanel/new');?>", {mess_name: mess_name, password: password}, function(data) {
-                $("#error").html(data);
-            })
-        });
-   })
-</script>

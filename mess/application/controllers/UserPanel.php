@@ -15,12 +15,13 @@ class UserPanel extends MY_Controller {
     }
 
     public function postNewUserPanel() {
-        $this->form_validation->set_rules('mess_name', 'Mess Name', 'trim|required|max_length[200]');
+        $this->form_validation->set_rules('username', 'Mess Name', 'trim|required|max_length[200]|is_unique[mess_panel.mess_name]');
         $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]|max_length[80]');
 
         if($this->form_validation->run() === FALSE) {
             $data['page'] = 'userpanel';
             $data['heading'] = 'User Panel';
+            $data['rows'] = $this->UserPanelModel->collectUserPanel();
             $this->load->view('dashboard', $data);
         } else {
             $this->UserPanelModel->createUserPanel();
