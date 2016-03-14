@@ -1,4 +1,10 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+/**
+ * Class Member
+ * Description - Use for fetch and create Member
+ */
 class Member extends MY_Controller {
     public function __construct() {
         parent::__construct();
@@ -6,7 +12,9 @@ class Member extends MY_Controller {
         $this->load->model('MemberModel');
     }
 
-
+    /**
+     * @getMember method is use for fetch data for table
+     */
     public function getMember() {
         $data['page'] = 'member';
         $data['heading'] = 'Member';
@@ -14,12 +22,18 @@ class Member extends MY_Controller {
         $this->load->view('dashboard', $data);
     }
 
+    /**
+     * @getNewMember method is use for load new member page
+     */
     public function getNewMember() {
         $data['page'] = 'newmember';
         $data['heading'] = 'New Member';
         $this->load->view('dashboard', $data);
     }
 
+    /**
+     * @postNewMember method is use for create new member to database
+     */
     public function postNewMember() {
         $this->form_validation->set_rules('name', 'Name', 'trim|required|max_length[20]');
         $this->form_validation->set_rules('address', 'Address', 'trim|required|max_length[20]');

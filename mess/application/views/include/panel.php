@@ -26,9 +26,9 @@
                 }
             ?>
         </select>
-        <input type="number" class="form-control" name="breakfast_meal" id="breakfast_meal" placeholder="Enter your Breakfast Meal">
-        <input type="number" class="form-control" name="lunch_meal" id="lunch_meal" placeholder="Enter your Lunch Meal">
-        <input type="number" class="form-control" name="dinner_meal" id="dinner_meal" placeholder="Enter your Dinner Meal">
+        <input type="text" class="form-control" name="breakfast_meal" id="breakfast_meal" placeholder="Enter your Breakfast Meal">
+        <input type="text" class="form-control" name="lunch_meal" id="lunch_meal" placeholder="Enter your Lunch Meal">
+        <input type="text" class="form-control" name="dinner_meal" id="dinner_meal" placeholder="Enter your Dinner Meal">
         <input style="width:300px" type="submit" class="btn btn-info" value="Save">
     </form>
 

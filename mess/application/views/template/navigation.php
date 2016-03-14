@@ -34,7 +34,7 @@
 
                 <li><a href="<?php echo base_url('dashboard/userpanel')?>"><i class="fa fa-file-text-o"></i> User Panel</a></li>
 
-                <li><a href=""><i class="fa fa-pie-chart"></i></i> Report</a></li>
+                <li><a href="<?php echo base_url('dashboard/report')?>"><i class="fa fa-pie-chart"></i></i> Report</a></li>
             <?php
                 } elseif($_SESSION['role'] == 'U') {
                     ?>

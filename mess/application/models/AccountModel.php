@@ -1,12 +1,19 @@
 <?php
-
+defined('BASEPATH') OR exit('No direct script access allowed');
+/**
+ * Class AccountModel
+ * working for create account for different role
+ */
 class AccountModel extends CI_Model
 {
     public function __construct() {
         $this->load->database();
     }
 
-    public function Password($x) {          //Make Hash Password
+    /**
+     * @Password method return Hash Password
+     */
+    public function Password($x) {          
         $options = [
             'cost' => 11,
             'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM),
@@ -19,7 +26,9 @@ class AccountModel extends CI_Model
         $date = date('Y-m-d h:i:s');
         return $date;
     }
-
+    /**
+     * @accountCreate method for create account for registration
+     */
     public function accountCreate() {               //Account Create
         $password = $this->input->post('password');
         $data = array(
@@ -36,6 +45,9 @@ class AccountModel extends CI_Model
         return $sql;
     }
 
+    /**
+     * @getPassword method is for matching password of login with database password
+     */
     private function getPassword($table, $username, $password) {            //Password maching basis of user input
         $sql = $this->db->get_where($table, array('username' => $username));
         $result = $sql->result();
@@ -44,6 +56,9 @@ class AccountModel extends CI_Model
                 return $row->password;
     }
 
+    /**
+     * @managerLogin method is for Manager Login
+     */
     public function managerLogin() {           //User login information
         $password = $this->input->post('password');
         $username = $this->input->post('username');
@@ -51,6 +66,9 @@ class AccountModel extends CI_Model
         return $sql->result();
     }
 
+    /**
+     * @userLogin method is for Mess Member Login
+     */
     public function usersLogin() {           //User login information
         $password = $this->input->post('password');
         $username = $this->input->post('username');

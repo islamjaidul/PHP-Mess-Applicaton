@@ -71,8 +71,13 @@ $route['dashboard/expenditure']['get'] = 'Expenditure/getExpenditure';
 $route['dashboard/expenditure/new']['get'] = 'Expenditure/getNewExpenditure';
 $route['dashboard/expenditure/new']['post'] = 'Expenditure/postNewExpenditure';
 $route['dashboard/meal']['get'] = 'Meal/getMeal';
+$route['dashboard/archive/meal']['get'] = 'Archive/getMealArchive';
+$route['dashboard/archive/meal/month/(:any)']['get'] = 'Archive/getMealMonth/$1';
+$route['dashboard/archive/report']['get'] = 'Archive/getReportArchive';
+$route['dashboard/archive/report/month/(:any)']['get'] = 'Archive/getArchiveMonth/$1';
 $route['dashboard/userpanel']['get'] = 'UserPanel/getUserPanel';
 $route['dashboard/userpanel/new']['post'] = 'UserPanel/postNewUserPanel';
+$route['dashboard/report']['get'] = 'Report/getReport';
 
 //Dashboard User Route Start
 

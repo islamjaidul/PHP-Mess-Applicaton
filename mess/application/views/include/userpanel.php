@@ -24,7 +24,7 @@
 
             <div class="panel-body">
                 <?php echo form_open('dashboard/userpanel/new')?>
-                <input type="text" name="mess_name" id="mess_name" class="form-control" placeholder="Enter the Mess Name" value="<?php echo set_value('mess_name')?>">
+                <input type="text" name="username" id="username" class="form-control" placeholder="Enter the Mess Name" value="<?php echo set_value('mess_name')?>">
                 <input type="password" name="password" id="password" class="form-control" placeholder="Enter the Password">
                 <input style="width:300px" type="submit" class="btn btn-info" name="submit" value="Submit">
                 </form>

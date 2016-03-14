@@ -13,7 +13,7 @@ if(isset($_POST['id']) && isset($_POST['limit']) && isset($_POST['table'])) {
     $limit = $_POST['limit'];
     $table = $_POST['table'];
 
-    $obj = Database::getInstance()->query('select * from '.$table.' WHERE usersid = '.$id.';');    //This is pagination page number
+    $obj = Database::getInstance()->query('select * from '.$table.' WHERE usersid = '.$id.' and month = '.date('m').';');    //This is pagination page number
     $total = $obj->count() / $limit;
     if(is_float($total)) {
         $total = intval($total)+1;
@@ -38,7 +38,7 @@ if(isset($_POST['pageid']) && $_POST['limit'] && $_POST['id']) {
     $to = $limit * $pageid;
     $from = $to - $limit;
 
-    $rows = Database::getInstance()->query('select ml.*, mm.name from mess_meal as ml, mess_member as mm WHERE ml.mess_memberid = mm.id and ml.usersid = '.$id.' order by id desc limit '.$from.', '.$limit.';');
+    $rows = Database::getInstance()->query('select ml.*, mm.name from mess_meal as ml, mess_member as mm WHERE ml.mess_memberid = mm.id and ml.usersid = '.$id.' and month = '.date('m').' order by id desc limit '.$from.', '.$limit.';');
 }
 ?>
 

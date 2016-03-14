@@ -1,4 +1,10 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+/**
+ * Class Panel
+ * Description - Panel is for User to create or update meal from user panel
+ */
 class Panel extends MY_Controller {
     public function __construct() {
         parent::__construct();
@@ -6,6 +12,10 @@ class Panel extends MY_Controller {
         $this->load->library('form_validation');
         $this->load->library('session');
     }
+
+    /**
+     * @getPanel method is for fetch data in the table
+     */
     public function getPanel() {
         $data['heading'] = 'Panel';
         $data['page'] = 'panel';
@@ -13,6 +23,9 @@ class Panel extends MY_Controller {
         $this->load->view('dashboard', $data);
     }
 
+    /**
+     * @postPanel method is for create or update data
+     */
     public function postPanel() {
         $this->form_validation->set_rules('breakfast_meal', 'Breakfast Meal', 'trim|required|numeric');
         $this->form_validation->set_rules('lunch_meal', 'Lunch Meal', 'trim|required|numeric');

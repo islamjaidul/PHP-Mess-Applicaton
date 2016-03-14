@@ -1,8 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Account extends CI_Controller
+/**
+ * Class Account
+ * Description - Account Controller is for create account of Manager
+ */
+class Account extends MY_Controller
 {
+
     public function index() {
         $this->load->view('login');             //Showing Login Page
     }
@@ -97,9 +102,11 @@ class Account extends CI_Controller
         }
     }
 
+    
     public function getLogout() {
         if ($this->session->has_userdata('id')) {
             $this->session->unset_userdata('usersid');
+            $this->session->unset_userdata('id');
             $this->session->unset_userdata('role');
             redirect(base_url());
         } else {

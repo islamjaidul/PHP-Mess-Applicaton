@@ -1,26 +1,49 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+/**
+ * Class PanelModel
+ * Description - It is using for create and update the meal of user panel
+ */
 class PanelModel extends CI_Model {
+
     public function __construct() {
         $this->load->database();
         $this->load->library('calendar');
     }
 
+    /**
+     * @collectMember method
+     * @return fetch data from mess_member for selecting member for user
+     */
     public function collectMember() {
         $sql = $this->db->get_where('mess_member', array('usersid' => $_SESSION['usersid']));
         return $sql->result();
     }
 
+    /**
+     * @date method for local time zone
+     * @return bool|string
+     */
     public function date() {
         date_default_timezone_set('Asia/Dhaka');
         $date = date('Y-m-d h:i:s');
         return $date;
     }
 
+    /**
+     *@collectPanelMember method
+     * @return mess_memberid for createPanel method
+     */
     public function collectPanelMember() {
         $sql = $this->db->query('SELECT mess_memberid FROM system;');
         return $sql->result();
     }
 
+    /**
+     * @createPanel method is for create or update by using
+     * @collectPanelMember id
+     * @return mixed
+     */
     public function createPanel() {
        $x = FALSE;
         foreach($this->collectPanelMember() as $row) {
