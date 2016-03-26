@@ -1,6 +1,16 @@
+<?php
+if (isset($_SESSION['msg'])) {
+?>
+<div class="alert alert-success">
+    <i class="fa fa-check-square-o"></i> <?php echo $_SESSION['msg']; ?>
+</div>
+<?php } ?>
+
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <span><a style="color:#ffffff;" href="<?php echo base_url('dashboard/archive/meal')?>">Archive</a></span>
+        <span><a class="label label-primary" style="color:#ffffff; text-decoration:none" href="<?php echo base_url('dashboard/archive/meal')?>"><i class="fa fa-archive"></i>  Archive</a></span>
+        <span><a class="label label-primary" style="color:#ffffff; text-decoration:none" href="<?php echo base_url('dashboard/meal/dailymeal')?>"><i class="fa fa-cutlery"></i>  Daily Meal</a></span>
+        <input style="display: inline; width: 150px; margin-top:-7px; float:right" type="search" id="search" class="form-control" placeholder="Search...">
     </div>
 
     <div class="panel-body">
@@ -21,10 +31,6 @@
                         <option value="150">150</option>
                         <option value="250">250</option>
                     </select>
-                </td>
-                <td>
-                    <label>Filter rows: </label>
-                    <input style="display: inline" type="search" id="search" class="form-control" placeholder="Search...">
                 </td>
             </tr>
         </table>
@@ -53,6 +59,7 @@
             var limit = $('#limit').val();
             var id = $('#id').val();
             var table = 'mess_meal';
+
             $.post('<?php echo base_url('ajax/Meal.php')?>', {limit: limit, id: id}, function(data) {
                 $('.rows').html(data);
             })

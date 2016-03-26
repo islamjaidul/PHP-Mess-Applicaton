@@ -1,6 +1,8 @@
 <!-- jQuery -->
 
 <!-- Place inside the <head> of your HTML -->
+<script src="<?php echo site_url('js/Controller.js');?>"></script>
+<script src="<?php echo site_url('js/script.js')?>"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="<?php echo base_url('js/bootstrap.min.js'); ?>"></script>

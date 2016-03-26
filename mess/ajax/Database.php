@@ -68,12 +68,8 @@ class Database
         return $this->action('SELECT *', $table, $where);
     }
 
-    public function rawQuery($sql) {
-        return $this->query($sql);
-    }
-
     public function delete($table, $where) {
-        return $this->atction('DELETE', $table, $where);
+        return $this->action('DELETE', $table, $where);
     }
 
     public function error() {
@@ -86,6 +82,12 @@ class Database
 
     public function result() {
         return $this->_result;
+    }
+
+    public function date() {
+        date_default_timezone_set('Asia/Dhaka');
+        $date = date('Y-m-d h:i:s');
+        return $date;
     }
 
 }

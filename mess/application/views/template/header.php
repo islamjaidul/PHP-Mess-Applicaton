@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app = "myApp">
 
 <head>
     <meta charset="UTF-8"/>
@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="<?php echo site_url('style/plugins/morris.css'); ?>">
 
     <link rel="stylesheet" href="<?php echo site_url('css/custom-bootstrap.css'); ?>">
-
+    <link rel="stylesheet" href="<?php echo site_url('css/AdminLTE.min.css'); ?>">
 
     <!-- Custom Fonts -->
     <link rel="stylesheet" href="<?php echo site_url('font-awesome-4.3.0/css/font-awesome.min.css'); ?>">
@@ -38,7 +38,7 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <script src="<?php echo site_url('js/angular.min.js');?>"></script>
     <script src="<?php echo site_url('js/jquery.js');?>"></script>
 </head>
 

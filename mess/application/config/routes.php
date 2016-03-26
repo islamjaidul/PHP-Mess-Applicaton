@@ -56,21 +56,32 @@ $route['create']['get'] = 'Account/getCreate';
 $route['create']['post'] = 'Account/postCreate';
 $route['login']['post'] = 'Account/getLogin';
 $route['logout']['get'] = 'Account/getLogout';
-$route['dashboard']['get'] = 'Account/getDashboard';
+
+//Dashboard Route Start
+$route['dashboard']['get'] = 'Dashboard/getDashboard';
 
 //Dashboard Manager Route Start
 
-$route['dashboard/test']['get'] = 'Dashboard';
 $route['dashboard/member']['get'] = 'Member/getMember';
 $route['dashboard/member/new']['get'] = 'Member/getNewMember';
 $route['dashboard/member/new']['post'] = 'Member/postNewMember';
+$route['dashboard/member/edit/(:any)']['get'] = 'Member/getEdit/$1';
+$route['dashboard/member/edit']['post'] = 'Member/postEdit';
+$route['dashboard/member/delete/(:any)']['get'] = 'Member/getDelete/$1';
 $route['dashboard/accounts']['get'] = 'MessAccounts/getMessAccounts';
 $route['dashboard/accounts/new']['get'] = 'MessAccounts/getNewMessAccounts';
 $route['dashboard/accounts/new']['post'] = 'MessAccounts/postNewMessAccounts';
+$route['dashboard/accounts/edit/(:any)']['get'] = 'MessAccounts/getEdit/$1';
+$route['dashboard/accounts/edit']['post'] = 'MessAccounts/postEdit';
+$route['dashboard/accounts/delete/(:any)']['get'] = 'MessAccounts/getDelete/$1';
 $route['dashboard/expenditure']['get'] = 'Expenditure/getExpenditure';
 $route['dashboard/expenditure/new']['get'] = 'Expenditure/getNewExpenditure';
 $route['dashboard/expenditure/new']['post'] = 'Expenditure/postNewExpenditure';
+$route['dashboard/expenditure/dailyexpense']['get'] = 'Expenditure/dailyExpense';
 $route['dashboard/meal']['get'] = 'Meal/getMeal';
+$route['dashboard/meal/edit/(:any)']['get'] = 'Meal/getEdit/$1';
+$route['dashboard/meal/edit']['post'] = 'Meal/postEdit';
+$route['dashboard/meal/dailymeal']['get'] = 'Meal/dailyMeal';
 $route['dashboard/archive/meal']['get'] = 'Archive/getMealArchive';
 $route['dashboard/archive/meal/month/(:any)']['get'] = 'Archive/getMealMonth/$1';
 $route['dashboard/archive/report']['get'] = 'Archive/getReportArchive';
@@ -78,6 +89,9 @@ $route['dashboard/archive/report/month/(:any)']['get'] = 'Archive/getArchiveMont
 $route['dashboard/userpanel']['get'] = 'UserPanel/getUserPanel';
 $route['dashboard/userpanel/new']['post'] = 'UserPanel/postNewUserPanel';
 $route['dashboard/report']['get'] = 'Report/getReport';
+
+//User Guide Start
+$route['dashboard/user-guide']['get'] = 'UserGuide/getUserGuide';
 
 //Dashboard User Route Start
 

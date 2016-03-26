@@ -83,5 +83,36 @@ class MessAccounts extends MY_Controller
         }
     }
 
+    public function getEdit($x)
+    {
+        $data['page'] = 'edit_accounts';
+        $data['heading'] = 'Edit Accounts';
+        $data['rows'] = $this->MessAccountsModel->editMessAccounts($x);
+        $this->load->view('dashboard', $data);
+    }
+
+    public function postEdit()
+    {
+        $this->form_validation->set_rules('amount', 'Amount', 'trim|required');
+        $this->form_validation->set_rules('memberid', 'Member', 'required');
+        if ($this->form_validation->run() === FALSE) {
+            $data['heading'] = 'Edit Accounts';
+            $data['page'] = 'edit_accounts';
+            $this->load->view('dashboard', $data);
+        } else {
+            $this->MessAccountsModel->updateAccounts();
+            $this->session->set_flashdata('msg', 'Mess Accounts Updated Successfully');
+            redirect('dashboard/accounts');
+        }
+    }
+
+    public function getDelete($x) {
+        $delete = $this->MessAccountsModel->deleteMessAccounts($x);
+        if($delete) {
+            $this->session->set_flashdata('alert-msg', 'Successfully Deleted');
+            redirect('dashboard/accounts');
+        }
+    }
+
 
 }

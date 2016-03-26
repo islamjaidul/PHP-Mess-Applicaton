@@ -109,13 +109,41 @@ class MessAccountsModel extends CI_Model
     /**
      @collectMessAccounts method is for fetching data fom mess_accounts
      */
-    public function collectMessAccounts() {
-        $sql = $this->db->query('select a.*, m.name from mess_accounts as a, mess_member as m where a.mess_memberid = m.id and a.month = '.date('m').' and a.usersid = '.$_SESSION['id'].';');
+    public function collectMessAccounts($x = null) {
+        if($x != null) {
+            $sql = $this->db->query('select a.*, m.name from mess_accounts as a, mess_member as m where a.mess_memberid = m.id and a.month = '.date('m').' and a.usersid = '.$_SESSION['id'].' and a.mess_memberid = '.$x.';');
+        } else {
+            $sql = $this->db->query('select a.*, m.name from mess_accounts as a, mess_member as m where a.mess_memberid = m.id and a.month = '.date('m').' and a.usersid = '.$_SESSION['id'].';');
+        }
         /*$sql = $this->db->select('amount', 'created_at', 'usersid', 'name')
                         ->from('mess_accounts', 'mess_member')
                         ->join('mess_member', 'mess_member.id = mess_accounts.mess_memberid')
                         ->join('users', 'mess_accounts.usersid = '.$_SESSION['id'].'')
                         ->get();*/
         return $sql->result();
+    }
+
+    public function editMessAccounts($x = null) {
+        $sql = $this->db->query('select a.*, m.name, m.id as member_id from mess_accounts as a, mess_member as m where a.mess_memberid = m.id and a.month = '.date('m').' and a.usersid = '.$_SESSION['id'].' and a.id = '.$x.';');
+        return $sql->result();
+    }
+
+    public function updateAccounts() {
+        date_default_timezone_set('Asia/Dhaka');
+        $data = array(
+            'amount' => $this->input->post('amount'),
+            'mess_memberid' => $this->input->post('memberid'),
+            'updated_at' => $this->date()
+        );
+        $id = $this->input->post('id');
+        $this->db->where('id', $id);
+        $sql = $this->db->update('mess_accounts', $data);
+        return $sql;
+    }
+
+    public function deleteMessAccounts($id) {
+        $sql = $this->db->where('id', $id);
+        $sql = $this->db->delete('mess_accounts');
+        return $sql;
     }
 }

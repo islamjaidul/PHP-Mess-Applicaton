@@ -25,8 +25,12 @@ class MealModel extends CI_Model
      * For the purpose of automatic insert in mess_meal table
      */
 
-    public function collectSystem() {
-        $sql = $this->db->get_where('system', array('usersid' => $_SESSION['id']));
+    public function collectSystem($x = null) {
+        if($x != null) {
+            $sql = $this->db->query('select s.*, m.name from system as s, mess_member as m where s.mess_memberid = m.id and s.usersid = '.$_SESSION['id'].' and s.mess_memberid = '.$x.';');
+        } else {
+            $sql = $this->db->query('select s.*, m.name from system as s, mess_member as m where s.mess_memberid = m.id and s.usersid = '.$_SESSION['id'].';');
+        }
         return $sql->result();
     }
     /**
@@ -120,6 +124,30 @@ class MealModel extends CI_Model
         } else {
             return false;
         }
+    }
+
+    public function collectMeal($x = null, $y = null) {
+        if($x != null) {
+            $sql = $this->db->query('SELECT * FROM mess_meal WHERE usersid = '.$_SESSION['id'].' and mess_memberid = '.$x.';');
+        } else if($x == null && $y == null) {
+            $sql = $this->db->query('SELECT * FROM mess_meal WHERE usersid = '.$_SESSION['id'].';');
+        } else {
+            $sql = $this->db->query('SELECT meal.*, member.id as member_id, member.name FROM mess_meal as meal, mess_member as member WHERE meal.mess_memberid = member.id and meal.usersid = '.$_SESSION['id'].' and meal.id = '.$y.';');
+        }
+        return $sql->result();
+    }
+
+    public function updateMeal() {
+        $data = array(
+            'breakfast_meal'        => $this->input->post('breakfast_meal'),
+            'lunch_meal'            => $this->input->post('lunch_meal'),
+            'dinner_meal'           => $this->input->post('dinner_meal'),
+            'updated_at'            => $this->date()
+        );
+        $id = $this->input->post('id');
+        $sql = $this->db->where('id', $id);
+        $sql = $this->db->update('mess_meal', $data);
+        return $sql;
     }
 
 }

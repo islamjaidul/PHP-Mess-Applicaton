@@ -1,6 +1,6 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <a style="color:white" href="<?php echo base_url('dashboard/archive/report')?>">Archive</a>
+        <span><a class="label label-primary" style="color:#ffffff; text-decoration:none" href="<?php echo base_url('dashboard/archive/report')?>"><i class="fa fa-archive"></i>  Archive</a></span>
     </div>
     <div class="panel-body">
         <div class="row">

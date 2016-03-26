@@ -1,9 +1,9 @@
-<?php echo form_open('dashboard/member/new'); ?>
+
 <?php
 if (isset($_SESSION['msg'])) {
     ?>
     <div class="alert alert-success">
-        <?php echo $_SESSION['msg']; ?>
+        <i class="fa fa-check-square-o"></i> <?php echo $_SESSION['msg']; ?>
     </div>
 <?php } ?>
 
@@ -14,6 +14,7 @@ if (validation_errors()) {
         <?php echo validation_errors(); ?>
     </div>
 <?php } ?>
+<?php echo form_open('dashboard/member/new'); ?>
 <input type="text" name="name" class="form-control" placeholder="Enter Your Name"
        value="<?php echo set_value('name') ?>">
 <textarea name="address" class="form-control"

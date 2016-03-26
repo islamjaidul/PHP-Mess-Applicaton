@@ -36,7 +36,7 @@ class Expenditure extends MY_Controller {
         $data['last_month'] = $this->getLastMonth();
         $data['rows'] = $this->ExpenditureModel->collectExpenditure();
         $this->load->view('dashboard', $data);
-
+        return json_encode($data['rows']);
     }
 
     /**
@@ -70,5 +70,12 @@ class Expenditure extends MY_Controller {
             $this->session->set_flashdata('msg', 'New Expenditure Saved Successfully');
             redirect('dashboard/expenditure/new');
         }
+    }
+
+    public function dailyExpense() {
+        $data['page'] = 'daily_expense';
+        $data['heading'] = 'Daily Expense';
+        $data['rows'] = $this->ExpenditureModel->collectExpenditure();
+        print_r (json_encode($data['rows']));
     }
 }

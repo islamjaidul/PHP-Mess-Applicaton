@@ -43,8 +43,13 @@ class ExpenditureModel extends CI_Model {
     /**
      @collectExpenditure method is for fetching data from expenditure table
      */
-    public function collectExpenditure() {
-        $sql = $this->db->query('select m.name, e.id, e.expense_amount, e.created_at, e.usersid, e.shopping, e.month from expenditure as e, mess_member as m where e.mess_memberid = m.id and e.month = '.date('m').' and e.usersid = '.$_SESSION['id'].';');
+    public function collectExpenditure($x = null) {
+        if($x != null) {
+            $sql = $this->db->query('select m.name,  e.expense_amount, e.created_at, e.shopping, e.month from expenditure as e, mess_member as m where e.mess_memberid = m.id and e.month = '.date('m').' and e.usersid = '.$_SESSION['id'].' and e.mess_memberid = '.$x.';');
+        } else {
+            $sql = $this->db->query('select m.name,  e.expense_amount, e.created_at, e.shopping, e.month from expenditure as e, mess_member as m where e.mess_memberid = m.id and e.month = '.date('m').' and e.usersid = '.$_SESSION['id'].';');
+        }
+
         /*$sql = $this->db->select('name', 'expense_amount', 'created_at', 'usersid', 'shopping')
                         ->from('expenditure', 'mess_member')
                         ->join('mess_member', 'expenditure.mess_memberid = mess_member.id')
