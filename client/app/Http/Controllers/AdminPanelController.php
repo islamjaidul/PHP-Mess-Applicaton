@@ -27,12 +27,18 @@ class AdminPanelController extends Controller
     }
 
     /**
+     * @params $id expect id of the Customer table
      * @return Customer table json data
      */
-    public function getData()
+    public function getData($id = null)
     {
-        $data = CustomerModel::all();
-        return $data;
+        if($id == null) {
+            $data = CustomerModel::all();
+            return $data;
+        } else {
+            $data = CustomerModel::find($id);
+            return $data;
+        }
     }
 
     /**
@@ -64,6 +70,12 @@ class AdminPanelController extends Controller
         return $this->getData();
     }
 
+    /**
+     * @prama expect json_data from js/Controller.js
+     * @return new Customer create
+     * @or
+     * @return only string (If there is already a email exist what is requested)
+     */
     public function getCreate()
     {
         $data = json_decode(file_get_contents("php://input"));
@@ -82,15 +94,41 @@ class AdminPanelController extends Controller
                 'surname'        => $data->surname,
                 'email'          => $data->email,
                 'password'       => bcrypt($data->password),
-                'company_name'    => $data->company_name,
+                'company_name'   => $data->company_name,
                 'address'        => $data->address,
-                'post_number'     => $data->post_number,
+                'post_number'    => $data->post_number,
                 'city'           => $data->city,
-                'active'         => 1
+                'active'         => 0,
+                'reference_id'   => uniqid()
             ));
             return $this->getData();
         } else {
             return 'false';
         }
     }
+
+    public function getView()
+    {
+        $data = json_decode(file_get_contents("php://input"));
+        return $this->getData($data->id);
+    }
+
+    public function getEdit()
+    {
+        $data = json_decode(file_get_contents("php://input"));
+        $sql = CustomerModel::find($data->id);
+
+        $sql->firstname      = $data->firstname;
+        $sql->surname        = $data->surname;
+        $sql->email          = $data->email;
+        $sql->company_name   = $data->company_name;
+        $sql->address        = $data->address;
+        $sql->post_number    = $data->post_number;
+        $sql->city           = $data->city;
+
+        $sql->save();
+        return $this->getData();
+    }
+
+
 }

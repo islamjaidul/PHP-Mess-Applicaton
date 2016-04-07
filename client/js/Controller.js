@@ -23,7 +23,10 @@ namespace.controller("MyController", function($scope, $http, $log){
      * @param $id expect customer id from database
      */
     $scope.view = function($id) {
-        alert($id);
+        $http.post('customer/view', {'id': $id})
+            .success(function(data) {
+                $scope.customerView = data;
+            })
     }
 
     /**
@@ -67,26 +70,56 @@ namespace.controller("MyController", function($scope, $http, $log){
                 'post_number'   : $params.post_number,
                 'city'          : $params.city
             })
-        .success(function(data) {
-                $scope.myForm.$setPristine();
-                $scope.myForm.$setUntouched();
-                $params.firstname       = '';
-                $params.surname         = '';
-                $params.email           = '';
-                $params.password        = '';
-                $params.cnfrm_password  = '';
-                $params.company_name    = '';
-                $params.address         = '';
-                $params.post_number     = '';
-                $params.city            = '';
-                $scope.customer         = data;
-        })
+            .success(function(data) {
+                    $scope.myForm.$setPristine();
+                    $scope.myForm.$setUntouched();
+                    $params.firstname       = '';
+                    $params.surname         = '';
+                    $params.email           = '';
+                    $params.password        = '';
+                    $params.cnfrm_password  = '';
+                    $params.company_name    = '';
+                    $params.address         = '';
+                    $params.post_number     = '';
+                    $params.city            = '';
+                    $scope.customer         = data;
+            })
     }
 
+    /**
+     * This is for when the email error message show
+     * Then by clicking this function it will fetch the data from database
+     */
     $scope.dataFetch = function() {
         $http.get('customer/data').success(function(data) {
             $scope.customer = data;
         });
+    }
+
+    $scope.editData = function($params) {
+        $http.post('customer/edit',
+            {
+                'id'            : $params.id,
+                'firstname'     : $params.firstname,
+                'surname'       : $params.surname,
+                'email'         : $params.email,
+                'company_name'  : $params.company_name,
+                'address'       : $params.address,
+                'post_number'   : $params.post_number,
+                'city'          : $params.city
+             })
+            .success(function(data) {
+                    $scope.myForm.$setPristine();
+                    $scope.myForm.$setUntouched();
+                    $params.firstname       = '';
+                    $params.surname         = '';
+                    $params.email           = '';
+                    $params.company_name    = '';
+                    $params.address         = '';
+                    $params.post_number     = '';
+                    $params.city            = '';
+                    $scope.customer         = data;
+            })
     }
 });
 

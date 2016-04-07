@@ -26,6 +26,10 @@ Route::group(['middleware' => ['web']], function () {
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
+    Route::get('/forgot-password/reset', function() {
+        return 'Under Construction';
+    });
+
     Route::get('/dashboard', 'DashboardController@getDashboard');
 
     Route::get('/dashboard/customer', 'AdminPanelController@getCustomer');
@@ -37,6 +41,10 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('dashboard/customer/delete', 'AdminPanelController@getDelete');
 
     Route::post('dashboard/customer/create', 'AdminPanelController@getCreate');
+
+    Route::post('dashboard/customer/view', 'AdminPanelController@getView');
+
+    Route::post('dashboard/customer/edit', 'AdminPanelController@getEdit');
 
 });
 
@@ -54,6 +62,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/customer/register/create', 'CustomerController@postCustomer');
 
     Route::get('/customer/portal', 'CustomerController@getCustomerPortal');
+
+    Route::get('/customer/email/notification', 'CustomerController@getEmailNotification');
 
 });
 

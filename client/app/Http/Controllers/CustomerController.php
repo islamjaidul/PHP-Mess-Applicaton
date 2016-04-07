@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Routing\Redirector;
 use Hash;
+use Crypt;
+use DB;
 
 class CustomerController extends Controller
 {
@@ -21,25 +23,87 @@ class CustomerController extends Controller
     }
 
     /**
+     * @param $to expect where the email will send
+     * @param $subject email subject
+     * @param $msg email message
+     * @return bool
+     */
+    public function sendMail($to, $subject, $msg) {
+        // To send HTML mail, the Content-type header must be set
+        $headers  = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+        // Additional headers
+        $headers .= 'To: User <'.$to.'>' . "\r\n";
+        $headers .= 'From: KP Online <noreplay@jaidulit.com>' . "\r\n";
+        $headers .= 'Cc: '.$to.'' . "\r\n";
+        $headers .= 'Bcc: '.$to.'' . "\r\n";
+
+        // Mail it
+        return mail($to, $subject, $msg, $headers);
+    }
+
+    /**
      * returns post data for customer registration
      */
     public function postCustomer(Requests\CustomerRequest $request)
     {
-        $active = 0;
         $create = CustomerModel::create(array(
                'firstname'      => $request->input('firstname'),
                'surname'        => $request->input('surname'),
                'email'          => $request->input('email'),
                'password'       => bcrypt($request->input('password')),
-               'company_name'    => $request->input('companyname'),
+               'company_name'   => $request->input('companyname'),
                'address'        => $request->input('address'),
-               'post_number'     => $request->input('postnumber'),
+               'post_number'    => $request->input('postnumber'),
                'city'           => $request->input('city'),
-               'active'         => $active
+               'active'         => 0,
+               'reference_id'   => uniqid()
         ));
-        //$request->session()->flash('global', 'Task was successful!');
-        return redirect('customer/register')->with('global', 'Customer created successfully');
-	
+        $table = DB::table('customer')->orderBy('id', 'desc')->get();
+        $reference_id = null;
+        foreach($table as $row) {
+            $reference_id = $row->reference_id;
+            break;
+        }
+
+        //Email sending to Customer
+        $name = $request->input('firstname');
+        $msg = "<h2>Dear ".$name."</h2>
+               <h4>Thank you for registration</h4>
+               <h4>Please wait for confirmation, your account is under review</h4>
+               <p>Regards</p>
+               <p>Fredrik</p>";
+        $to = $request->input('email');
+        $subject = "Account Creation";
+
+        //Email sending to admin.
+        $to_admin = "frlo@frlo.se";
+        $msg_admin = "<h2>Customer: ".$name."</h2>
+               <h4>Reference ID: ".$reference_id."</h4>
+               <h4>Please click the below to active him</h4>
+               <p>".url('/login')."</p>";
+        $subject_admin = "Account Activation";
+
+        $this->sendMail($to_admin, $subject_admin, $msg_admin);
+
+        if($this->sendMail($to, $subject, $msg)) {
+            return redirect('customer/email/notification')->with('global', 'Email has been sent.');
+        }
+    }
+
+    public function getEmailNotification()
+    {
+        return view('customer.include.email_notification');
+    }
+
+    public function getAccountActivation($id) {
+        $id = Crypt::decrypt($id);
+        $sql = CustomerModel::first($id);
+        $sql->active = 1;
+        if($sql->save()) {
+         return redirect('customer/email/notification')->with('active', 'Congratulation your account is now activated');
+        }
     }
 
     /**
