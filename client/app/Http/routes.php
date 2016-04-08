@@ -46,6 +46,8 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::post('dashboard/customer/edit', 'AdminPanelController@getEdit');
 
+    Route::post('dashboard/customer/live', 'AdminPanelController@getLive');
+
 });
 
 /**

@@ -72,7 +72,7 @@
                             <label class="col-md-4 control-label">Post Number</label>
 
                             <div class="col-md-6">
-                                <input type="number" name="post_number" class="form-control" ng-model="customerView.post_number" required>
+                                <input type="text" name="post_number" class="form-control" ng-model="customerView.post_number" required>
                                  <span style="color:red" ng-show="myForm1.post_number.$touched && myForm1.post_number.$invalid">
                                     <span ng-show="myForm1.post_number.$error.required">Post Number is required</span>
                                 </span>

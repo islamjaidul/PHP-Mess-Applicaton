@@ -8,11 +8,19 @@ namespace.controller("MyController", function($scope, $http, $log){
     });
 
     /**
-     * This is for active the customer
+     * This is for getting customer id and send it for pop up in admin/common/activation_confirm.blade.php
      * @param $id expect customer id from database
      */
-    $scope.active = function($id) {
-        $http.post('customer/status', {'id': $id})
+    $scope.activationId = function($id) {
+        $scope.id = $id;
+    }
+
+    /**
+     * This is for active the account of customer
+     * @param $id expect customer id from database
+     */
+    $scope.active = function ($id, $status) {
+        $http.post('customer/status', {'id': $id, 'status': $status})
             .success(function(data) {
                 $scope.customer = data;
             })
@@ -96,6 +104,10 @@ namespace.controller("MyController", function($scope, $http, $log){
         });
     }
 
+    /**
+     * This is for edit customer information by admin
+     * @param $params
+     */
     $scope.editData = function($params) {
         $http.post('customer/edit',
             {
@@ -109,8 +121,7 @@ namespace.controller("MyController", function($scope, $http, $log){
                 'city'          : $params.city
              })
             .success(function(data) {
-                    $scope.myForm.$setPristine();
-                    $scope.myForm.$setUntouched();
+                    $scope.myForm1.$setPristine();
                     $params.firstname       = '';
                     $params.surname         = '';
                     $params.email           = '';
@@ -119,6 +130,20 @@ namespace.controller("MyController", function($scope, $http, $log){
                     $params.post_number     = '';
                     $params.city            = '';
                     $scope.customer         = data;
+            })
+    }
+
+    /**
+     * This is for doing live (how many days / time) the customer account
+     * @param $live expect date
+     */
+    $scope.accountLive = function($live, $id) {
+        $http.post('customer/live', {'month': $live.month, 'id': $id})
+            .success(function(data) {
+                $scope.liveForm.$setPristine();
+                $scope.liveForm.$setUntouched();
+                $live.month       = '';
+                $scope.customer = data;
             })
     }
 });
