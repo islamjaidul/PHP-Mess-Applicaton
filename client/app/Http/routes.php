@@ -26,8 +26,8 @@ Route::group(['middleware' => ['web']], function () {
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
-    Route::get('/forgot-password/reset', function() {
-        return 'Under Construction';
+    Route::get('/register', function() {
+        return 'Sorry this page is not available anymore';
     });
 
     Route::get('/dashboard', 'DashboardController@getDashboard');
@@ -48,6 +48,14 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::post('dashboard/customer/live', 'AdminPanelController@getLive');
 
+    Route::get('dashboard/customer/check-before-expire', 'AdminPanelController@getCheckBeforeExpiration');
+
+    Route::get('dashboard/customer/expire', 'AdminPanelController@getExpired');
+
+    Route::post('dashboard/admin/register', 'AdminPanelController@adminRegistration');
+
+    Route::get('dashboard/customer/test', 'AdminPanelController@getTest');
+
 });
 
 /**
@@ -59,6 +67,8 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::post('/customer/login', 'CustomerController@postLoginCustomer');
 
+    Route::get('/customer/logout', 'CustomerController@getLogoutCustomer');
+
     Route::get('/customer/register', 'CustomerController@getCustomer');
 
     Route::post('/customer/register/create', 'CustomerController@postCustomer');
@@ -67,5 +77,22 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/customer/email/notification', 'CustomerController@getEmailNotification');
 
+    Route::get('/customer/account/extend', 'CustomerController@getAccountExtend');
+
+});
+
+/**
+ * Route for password reset
+ */
+Route::group(['middleware' => ['web']], function() {
+    //Route::get('admin/forgot-password', 'PasswordController@getAdminReset');
+
+    Route::get('customer/forgot-password', 'PasswordController@getCustomerReset');
+
+    Route::post('customer/reset', 'PasswordController@postCustomerReset');
+
+    Route::get('customer/reset/password', 'PasswordController@getCustomerPasswordReset');
+
+    Route::post('customer/reset/password', 'PasswordController@postCustomerPasswordReset');
 });
 

@@ -58,7 +58,8 @@ class CustomerController extends Controller
                'post_number'    => $request->input('postnumber'),
                'city'           => $request->input('city'),
                'active'         => 0,
-               'reference_id'   => uniqid()
+               'reference_id'   => uniqid(),
+               'new_customer'   => 1
         ));
         $table = DB::table('customer')->orderBy('id', 'desc')->get();
         $reference_id = null;
@@ -125,16 +126,14 @@ class CustomerController extends Controller
         $table = CustomerModel::all();
         $id = $this->loginMatch($table, $email, $password);
         if($id) {
-            $data = CustomerModel::where('id', $id)->get();
-            foreach($data as $row) {
-                $request->session()->put('id', $row->id);
-                $request->session()->put('firstname', $row->firstname);
-                $request->session()->put('email', $row->email);
-                $request->session()->put('active', $row->active);
-                $request->session()->put('token', $row->remember_token);
+            $data = CustomerModel::find($id);
+            if($data->active == 1) {
+                $request->session()->put('id', $id);
+                //Redirect intended page
+                return redirect()->intended('/customer/portal');
+            } else {
+                return redirect('/customer/login')->with('global', 'You are not activated');
             }
-            //Redirect intended page
-            return redirect()->intended('/customer/portal');
         } else {
             return redirect('/customer/login')->with('global', 'Invalid Email / Password');
         }
@@ -157,12 +156,26 @@ class CustomerController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @return This is for customer portal page
+     */
     public function getCustomerPortal(Request $request)
     {
-        if($request->session()->has('active') == 1) {
-            return 'This is the customer portal';
+        if($request->session()->has('id') == 1) {
+            return view('customer.include.customer_portal');
         } else {
-            return redirect('/customer/login')->with('global', 'You are not activated');
+            return redirect('/customer/login')->with('global', 'Please login first');
         }
     }
+
+    public function getLogoutCustomer(Request $request)
+    {
+        if ($request->session()->has('id')) {
+            $request->session()->forget('id');
+        }
+        return redirect('customer/login');
+    }
+
+
 }

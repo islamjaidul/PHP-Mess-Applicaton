@@ -98,11 +98,10 @@ desired effect
                                 </p>
                             </li>
                             <!-- Menu Body -->
-
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat"><i class="fa fa-gears"></i> Setting</a>
+                                    <a data-toggle="modal" data-target="#confirm-register" href="#" class="btn btn-default btn-flat"><i class="fa fa-btn fa-user"></i> Register</a>
                                 </div>
                                 <div class="pull-right">
                                     <a href="{{ url('/logout') }}" class="btn btn-default btn-flat"><i class="fa fa-btn fa-sign-out"></i> Logout</a>

@@ -9,9 +9,17 @@ namespace.controller("MyController", function($scope, $http, $log){
 
     /**
      * This is for getting customer id and send it for pop up in admin/common/activation_confirm.blade.php
-     * @param $id expect customer id from database
+     * @param $id expect customer id from customer.blade.js
      */
     $scope.activationId = function($id) {
+        $scope.id = $id;
+    }
+
+    /**
+     * This is for getting customer id and send it for pop up in admin/common/delete_confirm.blade.php
+     * @param $id expect customer id from customer.blade.js
+     */
+    $scope.deleteId = function($id) {
         $scope.id = $id;
     }
 
@@ -53,13 +61,10 @@ namespace.controller("MyController", function($scope, $http, $log){
      * @param $id expect customer id from database
      */
     $scope.delete = function($id) {
-        var cnfrm = confirm("Are you sure to delete ?");
-        if(cnfrm) {
-            $http.post('customer/delete', {'id': $id})
-                .success(function(data) {
-                    $scope.customer = data;
-                })
-        }
+        $http.post('customer/delete', {'id': $id})
+            .success(function(data) {
+                $scope.customer = data;
+            })
     }
 
     /**
@@ -143,6 +148,23 @@ namespace.controller("MyController", function($scope, $http, $log){
                 $scope.liveForm.$setPristine();
                 $scope.liveForm.$setUntouched();
                 $live.month       = '';
+                $scope.customer = data;
+            })
+    }
+
+    /**
+     * This is for admin register
+     * @param $params expect data
+     */
+    $scope.adminRegister = function($params) {
+        $http.post('admin/register', {'name': $params.name, 'email': $params.email, 'password': $params.password})
+            .success(function(data) {
+                $scope.registerForm.$setPristine();
+                $scope.registerForm.$setUntouched();
+                $params.name                    = '';
+                $params.email                   = '';
+                $params.password                = '';
+                $params.password_confirmation   = '';
                 $scope.customer = data;
             })
     }

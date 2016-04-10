@@ -12,6 +12,7 @@
                                     <div class="alert alert-success alert-dismissable">
                                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                                         <i class="fa fa-envelope-o"></i> {{ Session::get('global') }}
+                                        <p><a href="{{ url('/customer/login') }}"></a></p>
                                     </div>
                                 </div>
                             </div>

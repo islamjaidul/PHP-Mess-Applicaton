@@ -107,6 +107,7 @@
 
                             <div class="col-md-6">
                                 <select name="city" class="form-control" ng-model="frm.city" required>
+                                    <option value="" ng-init="Select the City">Select the City</option>
                                     <option value="City1">City1</option>
                                     <option value="City2">City2</option>
                                     <option value="City3">City3</option>

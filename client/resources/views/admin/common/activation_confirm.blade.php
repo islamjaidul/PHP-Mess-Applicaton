@@ -1,4 +1,4 @@
- <!--Add Div Start-->
+ <!--Confirm Activation Div Start-->
     <div class="modal fade" id="confirm-active">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -20,4 +20,4 @@
             </div>
         </div>
     </div>
-    <!--Add Div End-->
+    <!--Confirm Activation Div End-->
