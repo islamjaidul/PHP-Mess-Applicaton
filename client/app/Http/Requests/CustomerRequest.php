@@ -25,13 +25,14 @@ class CustomerRequest extends Request
     {
         return [
             'firstname'      => 'required|max: 20',
-            'surname'       => 'required|max: 20',
+            'lastname'       => 'required|max: 20',
             'email'         => 'required|email|max:50|unique:customer,email',
             'password'      => 'required|min:8|confirmed',
             'companyname'   => 'required|max: 20',
             'address'       => 'required',
-            'postnumber'    => 'required|numeric',
-            'city'          => 'required|not_in: 0',
+            'postal_code'    => 'required',
+            'city'          => 'required',
+            'phone'         => 'required'
         ];
     }
 }

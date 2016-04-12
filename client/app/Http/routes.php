@@ -26,6 +26,10 @@ Route::group(['middleware' => ['web']], function () {
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
+    Route::get('/login', 'Auth\AuthController@getLogin');
+
+    //Route::get('admin/login', 'Auth\AuthController@getAdminLogin');
+
     Route::get('/register', function() {
         return 'Sorry this page is not available anymore';
     });
@@ -54,6 +58,10 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::post('dashboard/admin/register', 'AdminPanelController@adminRegistration');
 
+    Route::get('dashboard/setting', 'AdminPanelController@getAdminSetting');
+
+    Route::post('dashboard/setting/change', 'AdminPanelController@postAdminSetting');
+
     Route::get('dashboard/customer/test', 'AdminPanelController@getTest');
 
 });
@@ -77,7 +85,9 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/customer/email/notification', 'CustomerController@getEmailNotification');
 
-    Route::get('/customer/account/extend', 'CustomerController@getAccountExtend');
+    Route::get('/customer/account/extend', function() {
+        return 'This system is under construction';
+    });
 
 });
 

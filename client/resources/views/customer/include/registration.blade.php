@@ -37,15 +37,15 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('surname') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label">Sur Name</label>
+                            <div class="form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label">Last Name</label>
 
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="surname" value="{{ old('surname') }}">
+                                    <input type="text" class="form-control" name="lastname" value="{{ old('lastname') }}">
 
-                                    @if ($errors->has('surname'))
+                                    @if ($errors->has('lastname'))
                                         <span class="help-block">
-                                    <strong>{{ $errors->first('surname') }}</strong>
+                                    <strong>{{ $errors->first('lastname') }}</strong>
                                 </span>
                                     @endif
                                 </div>
@@ -121,15 +121,15 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('postnumber') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label">Post Number</label>
+                            <div class="form-group{{ $errors->has('postal_code') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label">Postal Code</label>
 
                                 <div class="col-md-6">
-                                    <input type="number" class="form-control" name="postnumber" value="{{ old('postnumber') }}">
+                                    <input type="text" class="form-control" name="postal_code" value="{{ old('postal_code') }}">
 
-                                    @if ($errors->has('postnumber'))
+                                    @if ($errors->has('postal_code'))
                                         <span class="help-block">
-                                    <strong>{{ $errors->first('postnumber') }}</strong>
+                                    <strong>{{ $errors->first('postal_code') }}</strong>
                                 </span>
                                     @endif
                                 </div>
@@ -139,17 +139,26 @@
                                 <label class="col-md-4 control-label">City</label>
 
                                 <div class="col-md-6">
-                                    <select class="form-control" name="city">
-                                        <option value="0" selected="Select">Select</option>
-                                        <option value="City1">City1</option>
-                                        <option value="City2">City2</option>
-                                        <option value="City3">City3</option>
-                                        <option value="City4">City4</option>
-                                    </select>
+                                    <input type="text" class="form-control" name="city" value="{{ old('city') }}">
 
                                     @if ($errors->has('city'))
                                         <span class="help-block">
                                     <strong>{{ $errors->first('city') }}</strong>
+                                </span>
+                                    @endif
+                                </div>
+                            </div>
+
+
+                            <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label">Phone Number</label>
+
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="phone" value="{{ old('phone') }}">
+
+                                    @if ($errors->has('phone'))
+                                        <span class="help-block">
+                                    <strong>{{ $errors->first('phone') }}</strong>
                                 </span>
                                     @endif
                                 </div>

@@ -12,10 +12,10 @@
                     <form name="liveForm">
                         <select class="form-control" ng-model="live.month" required>
                             <option ng-init="Select the Time Span" value="">Select the Time Span</option>
-                            <option value="1">One Month</option>
-                            <option value="3">Three Month</option>
-                            <option value="6">Six Month</option>
-                            <option value="12">One Year</option>
+                            <option value="1">1 Month</option>
+                            <option value="3">3 Months</option>
+                            <option value="6">6 Months</option>
+                            <option value="12">1 Year</option>
                             <option value="0">Never Expire</option>
                         </select>
                         <span style="color:red" ng-show="liveForm.month.$touched && liveForm.month.$invalid">

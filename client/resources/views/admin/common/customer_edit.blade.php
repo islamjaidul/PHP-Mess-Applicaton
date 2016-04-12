@@ -17,18 +17,18 @@
                             <div class="col-md-6">
                                 <input type="text" name="firstname" class="form-control" ng-model="customerView.firstname" required>
                                 <span style="color:red" ng-show="myForm1.firstname.$touched && myForm1.firstname.$invalid">
-                                    <span ng-show="myForm.surname.$error.required">Username is required.</span>
+                                    <span ng-show="myForm.surname.$error.required">First name is required.</span>
                             </span>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Sur Name</label>
+                            <label class="col-md-4 control-label">Last Name</label>
 
                             <div class="col-md-6">
-                                <input type="text" name="surname" class="form-control" ng-model="customerView.surname" required>
-                                <span style="color:red" ng-show="myForm1.surname.$touched && myForm1.surname.$invalid">
-                                    <span ng-show="myForm1.surname.$error.required"> Surname is required </span>
+                                <input type="text" name="lastname" class="form-control" ng-model="customerView.lastname" required>
+                                <span style="color:red" ng-show="myForm1.lastname.$touched && myForm1.lastname.$invalid">
+                                    <span ng-show="myForm1.lastname.$error.required"> Last name is required </span>
                                 </span>
                             </div>
                         </div>
@@ -69,12 +69,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Post Number</label>
+                            <label class="col-md-4 control-label">Postal Code</label>
 
                             <div class="col-md-6">
-                                <input type="text" name="post_number" class="form-control" ng-model="customerView.post_number" required>
-                                 <span style="color:red" ng-show="myForm1.post_number.$touched && myForm1.post_number.$invalid">
-                                    <span ng-show="myForm1.post_number.$error.required">Post Number is required</span>
+                                <input type="text" name="postal_code" class="form-control" ng-model="customerView.postal_code" required>
+                                 <span style="color:red" ng-show="myForm1.postal_code.$touched && myForm1.postal_code.$invalid">
+                                    <span ng-show="myForm1.postal_code.$error.required">Postal code is required</span>
                                 </span>
                             </div>
                         </div>
@@ -83,20 +83,28 @@
                             <label class="col-md-4 control-label">City</label>
 
                             <div class="col-md-6">
-                                <select name="city" class="form-control" ng-model="customerView.city" required>
-                                    <option value="City1">City1</option>
-                                    <option value="City2">City2</option>
-                                    <option value="City3">City3</option>
-                                    <option value="City4">City4</option>
+                                <input type="text" name="city" class="form-control" ng-model="customerView.city" required>
                                 </select>
 
                                  <span style="color:red" ng-show="myForm1.city.$touched && myForm1.city.$invalid">
                                     <span ng-show="myForm1.city.$error.required">City is required</span>
                                 </span>
                             </div>
-
-                            <input type="hidden" ng-model="customerView.id">
                         </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Phone Number</label>
+
+                            <div class="col-md-6">
+                                <input type="text" name="phone" class="form-control" ng-model="customerView.phone" required>
+                                <input type="hidden" ng-model="customerView.id">
+
+                                 <span style="color:red" ng-show="myForm1.phone.$touched && myForm1.phone.$invalid">
+                                    <span ng-show="myForm1.phone.$error.required">Phone Number is required</span>
+                                </span>
+                            </div>
+                        </div>
+
                     </form>
                 </div>
 

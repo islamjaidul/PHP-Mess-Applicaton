@@ -35,7 +35,7 @@ class CustomerController extends Controller
 
         // Additional headers
         $headers .= 'To: User <'.$to.'>' . "\r\n";
-        $headers .= 'From: KP Online <noreplay@jaidulit.com>' . "\r\n";
+        $headers .= 'From: KP System <noreplay@kponline.se>' . "\r\n";
         $headers .= 'Cc: '.$to.'' . "\r\n";
         $headers .= 'Bcc: '.$to.'' . "\r\n";
 
@@ -50,13 +50,14 @@ class CustomerController extends Controller
     {
         $create = CustomerModel::create(array(
                'firstname'      => $request->input('firstname'),
-               'surname'        => $request->input('surname'),
+               'lastname'        => $request->input('lastname'),
                'email'          => $request->input('email'),
                'password'       => bcrypt($request->input('password')),
                'company_name'   => $request->input('companyname'),
                'address'        => $request->input('address'),
-               'post_number'    => $request->input('postnumber'),
+               'postal_code'    => $request->input('postal_code'),
                'city'           => $request->input('city'),
+               'phone'          => $request->input('phone'),
                'active'         => 0,
                'reference_id'   => uniqid(),
                'new_customer'   => 1
@@ -68,23 +69,23 @@ class CustomerController extends Controller
             break;
         }
 
-        //Email sending to Customer
+        //Email sending to Customer after registration
         $name = $request->input('firstname');
-        $msg = "<h2>Dear ".$name."</h2>
-               <h4>Thank you for registration</h4>
-               <h4>Please wait for confirmation, your account is under review</h4>
-               <p>Regards</p>
-               <p>Fredrik</p>";
+        $msg = "<h2>Hi ".$name."</h2>
+               <h4>Thank you for registering to KP Online!</h4>
+               <h4>Your request has been sent to us for evaluation. You will receive a confirmation email when your account has been approved and activated.</h4>
+               <p>Regards KP System</p>";
         $to = $request->input('email');
-        $subject = "Account Creation";
+        $subject = "Thank you for registering!";
 
-        //Email sending to admin.
+        //Email sending to admin after registration
         $to_admin = "frlo@frlo.se";
-        $msg_admin = "<h2>Customer: ".$name."</h2>
+        $msg_admin = "<h2>New Customer: ".$name."</h2>
+                <h4>Company: ".$request->input('companyname')."</h4>
                <h4>Reference ID: ".$reference_id."</h4>
                <h4>Please click the below to active him</h4>
                <p>".url('/login')."</p>";
-        $subject_admin = "Account Activation";
+        $subject_admin = "KP Online – New Customer";
 
         $this->sendMail($to_admin, $subject_admin, $msg_admin);
 
@@ -93,18 +94,12 @@ class CustomerController extends Controller
         }
     }
 
+    /**
+     * @return E-mail notification after completing registration
+     */
     public function getEmailNotification()
     {
         return view('customer.include.email_notification');
-    }
-
-    public function getAccountActivation($id) {
-        $id = Crypt::decrypt($id);
-        $sql = CustomerModel::first($id);
-        $sql->active = 1;
-        if($sql->save()) {
-         return redirect('customer/email/notification')->with('active', 'Congratulation your account is now activated');
-        }
     }
 
     /**
@@ -169,6 +164,10 @@ class CustomerController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @return Customer log out
+     */
     public function getLogoutCustomer(Request $request)
     {
         if ($request->session()->has('id')) {
@@ -177,5 +176,8 @@ class CustomerController extends Controller
         return redirect('customer/login');
     }
 
-
+    public function getAccountExtend()
+    {
+        return view('customer.include.account_extension');
+    }
 }

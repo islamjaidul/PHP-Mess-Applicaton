@@ -9,6 +9,18 @@
                         Admin Login
                     </div>
                     <div class="box-body">
+
+                        @if(Session::has('admin_password_change'))
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <div class="alert alert-success alert-dismissable">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                        <i class="fa fa-check"></i> {{ Session::get('admin_password_change') }}
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
                         <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                             {!! csrf_field() !!}
 
@@ -55,7 +67,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         <i class="fa fa-btn fa-sign-in"></i>Login
                                     </button>
-
+                                    <!--<a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>-->
                                 </div>
                             </div>
                         </form>

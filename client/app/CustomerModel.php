@@ -10,13 +10,14 @@ class CustomerModel extends Model
     protected $table = 'customer';
     protected $fillable = array(
         'firstname',
-        'surname',
+        'lastname',
         'email',
         'password',
         'company_name',
         'address',
-        'post_number',
+        'postal_code',
         'city',
+        'phone',
         'active',
         'reference_id',
         'new_customer',

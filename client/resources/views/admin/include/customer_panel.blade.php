@@ -3,8 +3,8 @@
     Customer Panel
 @endsection
 @section('content')
-    @include('admin.common.cusomer_create')
-    @include('admin.common.customer_information_view')
+    @include('admin.common.customer_registration')
+    @include('admin.common.customer_view')
     @include('admin.common.customer_edit')
     @include('admin.common.activation_confirm')
     @include('admin.common.delete_confirm')
@@ -38,10 +38,9 @@
                 <!--If email has no error start-->
          <span ng-if="customer != 'false'">
             <table ng-if="customer != 'success'" class="table table-bordered">
-                <tr><th>Ref ID</th><th>First Name</th><th>Action</th><th>Starting Date</th><th>Ending Date</th><th>Status</th></tr>
+                <tr><th>Customer</th><th>Action</th><th>Starting Date</th><th>Expiry Date</th><th>Status</th></tr>
                 <tr ng-repeat="row in customer|filter: search">
-                    <td>@{{ row.reference_id }}</td>
-                    <td>@{{ row.firstname }}</td>
+                    <td>@{{ row.firstname }} @{{ row.lastname }}</td>
                     <td>
                         <a data-toggle="modal" data-target="#confirm-active" href="#" ng-if="row.active == 0" ng-click="activationId(row.id)" class="label label-warning">Accept</a>
                         <a href="#" ng-if="row.active == 1" ng-click="block(row.id)" class="label label-danger">Block</a>
@@ -53,12 +52,13 @@
                     <td ng-if="row.start_at == '0000-00-00'">---</td>
                     <td  ng-if="row.start_at != '0000-00-00'">@{{ row.start_at }}</td>
                     <td ng-if="row.end_at == '0000-00-00' && row.never_expired != 1">---</td>
-                    <td style="color:green" ng-if="row.never_expired == '1'">Never Expired</td>
-                    <td ng-if="row.end_at != '0000-00-00' && row.end_at != '{{ date("Y-m-d") }}'">@{{ row.end_at }}</td>
-                    <td style="color:red" ng-if="row.end_at == '{{ date("Y-m-d") }}' ">Expired</td>
+                    <td style="color:green" ng-if="row.never_expired == '1'">Never Expire</td>
+                    <td ng-if="row.end_at != '0000-00-00' && row.expired == 0">@{{ row.end_at }}</td>
+                    <td style="color:red" ng-if="row.expired == 1 ">Expired</td>
                     <td>
                         <span style="width: 50px; display:block" ng-if="row.active == 1" class="label label-success">Active</span>
-                        <span ng-if="row.active == 0" class="label label-danger">Inactive</span>
+                        <span ng-if="row.active == 0 && row.new_customer == 0" class="label label-danger">Inactive</span>
+                        <span style="width: 50px; display:block" ng-if="row.active == 0 && row.new_customer == 1" class="label label-warning">New</span>
                     </td>
                 </tr>
             </table>

@@ -17,18 +17,18 @@
                             <div class="col-md-6">
                                 <input type="text" name="firstname" class="form-control" ng-model="frm.firstname" required>
                                 <span style="color:red" ng-show="myForm.firstname.$touched && myForm.firstname.$invalid">
-                                    <span ng-show="myForm.surname.$error.required">Username is required.</span>
+                                    <span ng-show="myForm.firstname.$error.required">First name is required.</span>
                             </span>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Sur Name</label>
+                            <label class="col-md-4 control-label">Last Name</label>
 
                             <div class="col-md-6">
-                                <input type="text" name="surname" class="form-control" ng-model="frm.surname" required>
-                                <span style="color:red" ng-show="myForm.surname.$touched && myForm.surname.$invalid">
-                                    <span ng-show="myForm.surname.$error.required"> Surname is required </span>
+                                <input type="text" name="lastname" class="form-control" ng-model="frm.lastname" required>
+                                <span style="color:red" ng-show="myForm.lastname.$touched && myForm.lastname.$invalid">
+                                    <span ng-show="myForm.lastname.$error.required"> Last name is required </span>
                                 </span>
                             </div>
                         </div>
@@ -92,12 +92,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Post Number</label>
+                            <label class="col-md-4 control-label">Postal Code</label>
 
                             <div class="col-md-6">
-                                <input type="number" name="post_number" class="form-control" ng-model="frm.post_number" required>
-                                 <span style="color:red" ng-show="myForm.post_number.$touched && myForm.post_number.$invalid">
-                                    <span ng-show="myForm.post_number.$error.required">Post Number is required</span>
+                                <input type="text" name="postal_code" class="form-control" ng-model="frm.postal_code" required>
+                                 <span style="color:red" ng-show="myForm.postal_code.$touched && myForm.postal_code.$invalid">
+                                    <span ng-show="myForm.postal_code.$error.required">Postal Code is required</span>
                                 </span>
                             </div>
                         </div>
@@ -106,16 +106,24 @@
                             <label class="col-md-4 control-label">City</label>
 
                             <div class="col-md-6">
-                                <select name="city" class="form-control" ng-model="frm.city" required>
-                                    <option value="" ng-init="Select the City">Select the City</option>
-                                    <option value="City1">City1</option>
-                                    <option value="City2">City2</option>
-                                    <option value="City3">City3</option>
-                                    <option value="City4">City4</option>
+                                <input type="text" name="city" class="form-control" ng-model="frm.city" required>
                                 </select>
 
                                  <span style="color:red" ng-show="myForm.city.$touched && myForm.city.$invalid">
                                     <span ng-show="myForm.city.$error.required">City is required</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Phone Number</label>
+
+                            <div class="col-md-6">
+                                <input type="text" name="phone" class="form-control" ng-model="frm.phone" required>
+                                </select>
+
+                                 <span style="color:red" ng-show="myForm.phone.$touched && myForm.phone.$invalid">
+                                    <span ng-show="myForm.phone.$error.required">Phone Number is required</span>
                                 </span>
                             </div>
                         </div>

@@ -75,27 +75,29 @@ namespace.controller("MyController", function($scope, $http, $log){
         $http.post('customer/create',
             {
                 'firstname'     : $params.firstname,
-                'surname'       : $params.surname,
+                'lastname'      : $params.lastname,
                 'email'         : $params.email,
                 'password'      : $params.password,
                 'company_name'  : $params.company_name,
                 'address'       : $params.address,
-                'post_number'   : $params.post_number,
-                'city'          : $params.city
+                'postal_code'   : $params.postal_code,
+                'city'          : $params.city,
+                'phone'         : $params.phone
             })
             .success(function(data) {
-                    $scope.myForm.$setPristine();
-                    $scope.myForm.$setUntouched();
-                    $params.firstname       = '';
-                    $params.surname         = '';
-                    $params.email           = '';
-                    $params.password        = '';
-                    $params.cnfrm_password  = '';
-                    $params.company_name    = '';
-                    $params.address         = '';
-                    $params.post_number     = '';
-                    $params.city            = '';
-                    $scope.customer         = data;
+                $scope.myForm.$setPristine();
+                $scope.myForm.$setUntouched();
+                $params.firstname       = '';
+                $params.lastname         = '';
+                $params.email           = '';
+                $params.password        = '';
+                $params.cnfrm_password  = '';
+                $params.company_name    = '';
+                $params.address         = '';
+                $params.postal_code     = '';
+                $params.city            = '';
+                $params.phone           = '';
+                $scope.customer         = data;
             })
     }
 
@@ -118,22 +120,24 @@ namespace.controller("MyController", function($scope, $http, $log){
             {
                 'id'            : $params.id,
                 'firstname'     : $params.firstname,
-                'surname'       : $params.surname,
+                'lastname'      : $params.lastname,
                 'email'         : $params.email,
                 'company_name'  : $params.company_name,
                 'address'       : $params.address,
-                'post_number'   : $params.post_number,
-                'city'          : $params.city
+                'postal_code'   : $params.postal_code,
+                'city'          : $params.city,
+                'phone'         : $params.phone
              })
             .success(function(data) {
                     $scope.myForm1.$setPristine();
                     $params.firstname       = '';
-                    $params.surname         = '';
+                    $params.lastname         = '';
                     $params.email           = '';
                     $params.company_name    = '';
                     $params.address         = '';
-                    $params.post_number     = '';
+                    $params.postal_code     = '';
                     $params.city            = '';
+                    $params.phone           = '';
                     $scope.customer         = data;
             })
     }
@@ -157,7 +161,7 @@ namespace.controller("MyController", function($scope, $http, $log){
      * @param $params expect data
      */
     $scope.adminRegister = function($params) {
-        $http.post('admin/register', {'name': $params.name, 'email': $params.email, 'password': $params.password})
+        $http.post('http://localhost/client/dashboard/admin/register', {'name': $params.name, 'email': $params.email, 'password': $params.password})
             .success(function(data) {
                 $scope.registerForm.$setPristine();
                 $scope.registerForm.$setUntouched();
