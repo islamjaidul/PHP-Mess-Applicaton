@@ -12,18 +12,18 @@ if (isset($_SESSION['msg'])) {
     <div class="box-body">
         <span><a class="label label-success" style="color:#ffffff; text-decoration:none" href="<?php echo base_url('dashboard/archive/meal')?>"><i class="fa fa-archive"></i>  Archive</a></span>
         <span><a class="label label-danger" style="color:#ffffff; text-decoration:none" href="<?php echo base_url('dashboard/meal/dailymeal')?>"><i class="fa fa-cutlery"></i>  Daily Meal</a></span>
-        <input style="display: inline; width: 160px; margin-top:-2px; float:right" type="search" id="search" class="form-control" placeholder="Search...">
+
 
             <table class="table table-responsive">
                 <tr>
-                    <td>
-                        <label>Number of page: </label>
+                    <td width="200px">
+                        <label>Page: </label>
                         <select style="width: 70px; display:inline" name="page" id="page" class="form-control">
 
                         </select>
                     </td>
                     <td>
-                        <label>Number of rows: </label>
+                        <label>Rows: </label>
                         <select style="width: 70px; display:inline" name="limit" id="limit" class="form-control">
                             <option selected="20" value="20">20</option>
                             <option value="40">40</option>

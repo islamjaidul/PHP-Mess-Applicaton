@@ -78,6 +78,7 @@ $route['dashboard/accounts/delete/(:any)']['get'] = 'MessAccounts/getDelete/$1';
 $route['dashboard/expenditure']['get'] = 'Expenditure/getExpenditure';
 $route['dashboard/expenditure/new']['get'] = 'Expenditure/getNewExpenditure';
 $route['dashboard/expenditure/new']['post'] = 'Expenditure/postNewExpenditure';
+$route['dashboard/expenditure/delete']['get'] = 'Expenditure/getDelete';
 $route['dashboard/expenditure/dailyexpense']['get'] = 'Expenditure/dailyExpense';
 $route['dashboard/meal']['get'] = 'Meal/getMeal';
 $route['dashboard/meal/edit/(:any)']['get'] = 'Meal/getEdit/$1';

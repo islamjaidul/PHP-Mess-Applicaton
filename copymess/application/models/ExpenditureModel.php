@@ -47,7 +47,7 @@ class ExpenditureModel extends CI_Model {
         if($x != null) {
             $sql = $this->db->query('select m.name,  e.expense_amount, e.created_at, e.shopping, e.month from expenditure as e, mess_member as m where e.mess_memberid = m.id and e.month = '.date('m').' and e.usersid = '.$_SESSION['id'].' and e.mess_memberid = '.$x.';');
         } else {
-            $sql = $this->db->query('select m.name,  e.expense_amount, e.created_at, e.shopping, e.month from expenditure as e, mess_member as m where e.mess_memberid = m.id and e.month = '.date('m').' and e.usersid = '.$_SESSION['id'].';');
+            $sql = $this->db->query('select m.name, e.id, e.expense_amount, e.created_at, e.shopping, e.month, e.usersid from expenditure as e, mess_member as m where e.mess_memberid = m.id and e.month = '.date('m').' and e.usersid = '.$_SESSION['id'].';');
         }
 
         /*$sql = $this->db->select('name', 'expense_amount', 'created_at', 'usersid', 'shopping')

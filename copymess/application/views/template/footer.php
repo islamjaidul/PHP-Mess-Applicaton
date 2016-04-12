@@ -66,7 +66,6 @@
     </div><!-- ./wrapper -->
 
     <!-- REQUIRED JS SCRIPTS -->
-    <script src="<?php echo base_url('js/Controller.js');?>"></script>
     <!-- jQuery 2.1.4 -->
     <!-- Bootstrap 3.3.5 -->
     <script src="<?php echo base_url('js/bootstrap.min.js'); ?>"></script>

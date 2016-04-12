@@ -40,7 +40,7 @@ class AccountModel extends CI_Model
             'password' => $this->Password($password),
             'email' => $this->input->post('email'),
             'mobile' => $this->input->post('mobile'),
-            'role' => 'U',
+            'role' => 'M',
             'active' => 0,
             'created_at' => $this->date()
         );

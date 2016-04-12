@@ -45,6 +45,16 @@ class MealModel extends CI_Model
     }
 
     /**
+     * @userExistInMeal method return the existence of user's in Meal table
+     */
+    public function usersExistInMeal() {
+        $sql = $this->db->query('SELECT usersid FROM mess_meal WHERE usersid = '.$_SESSION['id'].';');
+        foreach($sql->result() as $row) {
+            return $row->usersid;
+        }
+    }
+
+    /**
      * getLastMonth method
      * @return last month
      */
@@ -83,7 +93,7 @@ class MealModel extends CI_Model
         if($this->getLastDate() < $day) {
             //Check if there is no date available in database then (if) is true or then (else)
             //The result will show just initiate day.
-            if($this->getLastDate() == null) {
+            if($this->usersExistInMeal() == null) {
                 $sql = null;
                 $lastDate = $day;
                 for($i = $day; $i <= $day; $i++) {
@@ -125,8 +135,8 @@ class MealModel extends CI_Model
                 return $sql;
             }
         } else if($this->getLastMonth() < $month) {   //For month changing meal insert
-            $total =  (int)$this->calendar->get_total_days($month, $year);
-            $previous_date = (int)$this->calendar->get_total_days($month, $year);
+            $total =  (int)$this->calendar->get_total_days((date("m") - 1), $year);
+            $previous_date = (int)$this->calendar->get_total_days((date("m") - 1), $year);
             $previous_month = (date("m") - 1);
             if($this->getLastDate() == ($total -1)) {    //It is working for to insert the last date of the last month meal insert
                 $sql = null;
@@ -145,26 +155,28 @@ class MealModel extends CI_Model
                         $sql = $this->db->insert('mess_meal', $data);
                     }
                 }
-            }
-            //It will initiate the month change
-            $lastDate = $day;
-            for($i = $day; $i <= $day; $i++) {
-                foreach($this->collectSystem() as $row) {
-                    $data = array(
-                        'mess_memberid'    => $row->mess_memberid,
-                        'usersid'           => $row->usersid,
-                        'breakfast_meal'    => $row->breakfast_meal,
-                        'lunch_meal'        => $row->lunch_meal,
-                        'dinner_meal'       => $row->dinner_meal,
-                        'date'              => $lastDate,
-                        'month'             => $month,
-                        'created_at'        => date('Y-m-'.$lastDate.' h:i:s')
-                    );
-                    $sql = $this->db->insert('mess_meal', $data);
+            } else {
+                if(date('d') == 2) {
+                    //It will initiate the month change
+                    $lastDate = 1;
+                    for($i = 1; $i <= 1; $i++) {
+                        foreach($this->collectSystem() as $row) {
+                            $data = array(
+                                'mess_memberid'    => $row->mess_memberid,
+                                'usersid'           => $row->usersid,
+                                'breakfast_meal'    => $row->breakfast_meal,
+                                'lunch_meal'        => $row->lunch_meal,
+                                'dinner_meal'       => $row->dinner_meal,
+                                'date'              => $lastDate,
+                                'month'             => $month,
+                                'created_at'        => date('Y-m-'.$lastDate.' h:i:s')
+                            );
+                            $sql = $this->db->insert('mess_meal', $data);
+                        }
+                    }
+                    return $sql;
                 }
-                $lastDate++;
             }
-            return $sql;
         } else {
             return false;
         }

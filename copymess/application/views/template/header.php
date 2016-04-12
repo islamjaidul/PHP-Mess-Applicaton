@@ -14,9 +14,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <link rel="stylesheet" href="<?php echo site_url('style/bootstrap.min.css'); ?>">
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
     <!-- Theme style -->
     <link rel="stylesheet" href="<?php echo base_url('dist/css/AdminLTE.min.css');?>">
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
@@ -24,16 +22,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
           apply the skin class to the body tag so the changes take effect.
     -->
     <link rel="stylesheet" href="<?php echo base_url('dist/css/skins/skin-blue.min.css')?>">
-   
-   <script src="<?php echo base_url('js/angular.min.js');?>"></script>
+    <script src="<?php echo base_url('js/angular.min.js');?>"></script>
    <script src="<?php echo base_url('plugins/jQuery/jQuery-2.1.4.min.js');?>"></script>
+    <script src="<?php echo base_url('js/Controller.js');?>"></script>
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
     <![endif]-->
 
 	<style>
@@ -126,5 +123,5 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </nav>
       </header>
 <?php include_once 'navigation.php'; ?>
-        <?php include_once 'main.php'; ?>
+<?php include_once 'main.php'; ?>
 <?php include_once 'footer.php'; ?>

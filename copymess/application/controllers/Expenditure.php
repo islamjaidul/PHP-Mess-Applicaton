@@ -109,4 +109,9 @@ class Expenditure extends MY_Controller {
             $this->load->view('login', $data);
         }
     }
+
+    public function getDelete() {
+        $data = json_decode(file_get_contents("php://input"));
+        echo $data;
+    }
 }
